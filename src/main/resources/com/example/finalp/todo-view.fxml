@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" alignment="CENTER" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.finalp.TodoController"
+      style="-fx-background-color: lavender;">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="To-Do List">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
+
+    <TextField fx:id="itemInput" promptText="Enter a task" prefWidth="250.0"/>
+
+    <HBox spacing="10.0" alignment="CENTER">
+        <Button text="Add" onAction="#onAddClick"/>
+        <Button text="Edit" onAction="#onEditClick"/>
+        <Button text="Remove" onAction="#onRemoveClick"/>
+    </HBox>
+
+    <ListView fx:id="itemList" prefHeight="200.0" prefWidth="300.0"/>
+</VBox>
