@@ -15,6 +15,11 @@ import java.io.IOException;
  */
 public class TodoApp extends Application {
 
+    /**
+     * Initializes the main stage and scene for the To-Do List application.
+     * @param stage The primary stage for the application.
+     * @throws IOException If an error occurs loading the FXML file.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("todo-view.fxml"));
@@ -24,6 +29,10 @@ public class TodoApp extends Application {
         stage.show();
     }
 
+    /**
+     * The main entry point for the JavaFX application.
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         launch();
     }

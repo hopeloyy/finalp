@@ -19,12 +19,19 @@ public class TodoController {
 
     private final TodoList todoList = new TodoList();
 
-
+    /**
+     * Initializes the controller by setting the item list.
+     */
     @FXML
     public void initialize() {
         itemList.setItems(todoList.getItems());
     }
 
+    /**
+     * Handles the add item action when the "Add" button is clicked.
+     * It retrieves the text from the input field, checks if it is empty,
+     * and adds it to the todo list.
+     */
     @FXML
     private void onAddClick() {
         String item = itemInput.getText().trim();
@@ -36,6 +43,10 @@ public class TodoController {
         }
     }
 
+    /**
+     * Handles the remove item action when the "Remove" button is clicked.
+     * It removes the selected item from the todo list if an item is selected.
+     */
     @FXML
     private void onRemoveClick() {
         String selected = itemList.getSelectionModel().getSelectedItem();
@@ -46,6 +57,11 @@ public class TodoController {
         }
     }
 
+    /**
+     * Handles the edit item action when the "Edit" button is clicked.
+     * It allows the user to input a new value for the selected task.
+     * If the task is empty, it shows an alert.
+     */
     @FXML
     private void onEditClick() {
         String selected = itemList.getSelectionModel().getSelectedItem();
@@ -69,6 +85,10 @@ public class TodoController {
         });
     }
 
+    /**
+     * Displays an alert with a warning message.
+     * @param message The message to display in the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
