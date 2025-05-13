@@ -2,8 +2,6 @@ package com.example.finalp;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-
 import java.util.Optional;
 
 /**
@@ -29,60 +27,71 @@ public class TodoController {
 
     /**
      * Handles the add item action when the "Add" button is clicked.
-     * It retrieves the text from the input field, checks if it is empty,
-     * and adds it to the todo list.
+     * Uses exception handling to prevent crashes from unexpected errors.
      */
     @FXML
     private void onAddClick() {
-        String item = itemInput.getText().trim();
-        if (item.isEmpty()) {
-            showAlert("Please enter a task before adding.");
-        } else {
+        try {
+            String item = itemInput.getText().trim();
+            if (item.isEmpty()) {
+                throw new IllegalArgumentException("Please enter a task before adding.");
+            }
             todoList.addItem(item);
             itemInput.clear();
+        } catch (Exception e) {
+            showAlert(e.getMessage());
         }
     }
 
     /**
      * Handles the remove item action when the "Remove" button is clicked.
-     * It removes the selected item from the todo list if an item is selected.
+     * Uses exception handling to catch null selections.
      */
     @FXML
     private void onRemoveClick() {
-        String selected = itemList.getSelectionModel().getSelectedItem();
-        if (selected != null) {
+        try {
+            String selected = itemList.getSelectionModel().getSelectedItem();
+            if (selected == null) {
+                throw new IllegalArgumentException("Please select an item to remove.");
+            }
             todoList.removeItem(selected);
-        } else {
-            showAlert("Please select an item to remove.");
+        } catch (Exception e) {
+            showAlert(e.getMessage());
         }
     }
 
     /**
      * Handles the edit item action when the "Edit" button is clicked.
-     * It allows the user to input a new value for the selected task.
-     * If the task is empty, it shows an alert.
+     * Uses exception handling to manage empty or null edits.
      */
     @FXML
     private void onEditClick() {
-        String selected = itemList.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            showAlert("Please select an item to edit.");
-            return;
-        }
-
-        TextInputDialog dialog = new TextInputDialog(selected);
-        dialog.setTitle("Edit Task");
-        dialog.setHeaderText("Edit selected task:");
-        dialog.setContentText("New value:");
-
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(newValue -> {
-            if (!newValue.trim().isEmpty()) {
-                todoList.editItem(selected, newValue.trim());
-            } else {
-                showAlert("Task cannot be empty.");
+        try {
+            String selected = itemList.getSelectionModel().getSelectedItem();
+            if (selected == null) {
+                throw new IllegalArgumentException("Please select an item to edit.");
             }
-        });
+
+            TextInputDialog dialog = new TextInputDialog(selected);
+            dialog.setTitle("Edit Task");
+            dialog.setHeaderText("Edit selected task:");
+            dialog.setContentText("New value:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(newValue -> {
+                try {
+                    if (newValue.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Task cannot be empty.");
+                    }
+                    todoList.editItem(selected, newValue.trim());
+                } catch (Exception innerEx) {
+                    showAlert(innerEx.getMessage());
+                }
+            });
+
+        } catch (Exception e) {
+            showAlert(e.getMessage());
+        }
     }
 
     /**
