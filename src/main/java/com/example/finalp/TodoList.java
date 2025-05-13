@@ -8,9 +8,9 @@ import javafx.collections.ObservableList;
  * Launches a To Do List, to add, edit, or remove items. Displays and updated list
  * @author Hope Loy
  * @since 05/13/2025
- */
 
-/**
+
+/*
  * Manages the list of to-do items.
  */
 public class TodoList {
