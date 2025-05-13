@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 /**
  * Final Project: To Do List Application
  * Launches a To Do List, to add, edit, or remove items. Displays and updated list
+ * TodoList.java Manages the task data ia an observable list to be automatically updated
  * @author Hope Loy
  * @since 05/13/2025
 

@@ -7,6 +7,7 @@ import java.util.Optional;
 /**
  * Final Project: To Do List Application
  * Launches a To Do List, to add, edit, or remove items. Displays and updated list
+ * TodoController.java handles user interactions from the GUI (buttons, list selection, input field)
  * @author Hope Loy
  * @since 05/13/2025
  /*
